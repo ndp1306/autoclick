@@ -1,9 +1,7 @@
 /// <reference types="cypress" />
-
-const { closeSync } = require("fs")
-
 describe('Test with Page Objects', () => {
-    beforeEach('login', () =>
+    let score = 0;
+    beforeEach('login', () => {
         cy.clearCookies()
         cy.visit('/')
         cy.get('#username').type('K24DTCN218')
@@ -11,11 +9,11 @@ describe('Test with Page Objects', () => {
         cy.get('#loginbtn').click()
     })
     it('autoclick', () => {
-        
-        let score = 0;
-        cy.get('.breadcrumb > :nth-child(1)').click()
-        cy.get('[role="listitem"][data-course-id="8418"] > [tabindex="-1"] > .card-img').click()
-        cy.contains('Câu hỏi ôn tập Chương 2').click();
+        cy.visit('/')
+        cy.wait(2000)
+        cy.get('[class="card-deck dashboard-card-deck "]')
+        .find('[class="card dashboard-card"]').first().click()
+        cy.contains('Câu hỏi ôn tập Chương 1').click(); // Đổi cái câu hỏi ôn tập này nhé mng, 1,2,3,4,...
         cy.get('div.box.py-3.quizattempt').within(() => {
             cy.get('button.btn.btn-secondary').click();
         });
@@ -37,6 +35,11 @@ describe('Test with Page Objects', () => {
         cy.wait(1000)
         cy.scrollTo(0,5000)
         cy.contains('Dừng xem lại').click();
-    
+        if(score < 5){
+            cy.oncemoreplz()
+        }
+        else {
+           return;
+        }
     })
 })
