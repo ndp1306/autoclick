@@ -4,14 +4,16 @@ describe('Test with Page Objects', () => {
     beforeEach('login', () => {
         cy.clearCookies()
         cy.visit('/')
-        cy.get('#username').type('K24DTCN218')
-        cy.get('#password').type('HelloWorld@2')
+        cy.get('#username').type('Nhap tkhoan vao day') 
+        cy.get('#password').type('Mat khau vao day')
+        //Thay tkhoan mkhau vao
         cy.get('#loginbtn').click()
     })
     it('autoclick', () => {
         cy.visit('/')
         cy.wait(2000)
         cy.get('[class="card-deck dashboard-card-deck "]')
+        //Auto click vào bài đầu tiên trong list Course review
         .find('[class="card dashboard-card"]').first().click()
         cy.contains('Câu hỏi ôn tập Chương 1').click(); // Đổi cái câu hỏi ôn tập này nhé mng, 1,2,3,4,...
         cy.get('div.box.py-3.quizattempt').within(() => {
