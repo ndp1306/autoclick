@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 Cypress.Commands.add('oncemoreplz', () => {
-
+    let score = 0;
     cy.get('div.box.py-3.quizattempt').within(() => {
         cy.get('button.btn.btn-secondary').click();
     });
@@ -20,7 +20,6 @@ Cypress.Commands.add('oncemoreplz', () => {
     cy.wait(1000)
     cy.scrollTo(0,5000)
     cy.contains('Dừng xem lại').click();
-    let score = 0;
     if(score < 5){
         cy.oncemoreplz()
     }

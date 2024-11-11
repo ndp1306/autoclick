@@ -14,7 +14,7 @@ describe('Test with Page Objects', () => {
         cy.get('[class="card-deck dashboard-card-deck "]')
         //Auto click vào bài đầu tiên trong list Course review
         .find('[class="card-img dashboard-card-img"]').first().click()
-        cy.contains('Câu hỏi ôn tập chương 2').click(); //Moi nguoi tu thay doi chuong nhe =))) auto cai nay met vcl
+        cy.contains('Câu hỏi ôn tập chương 4').click(); //Moi nguoi tu thay doi chuong nhe =))) auto cai nay met vcl
         cy.get('div.box.py-3.quizattempt').within(() => {
             cy.get('button.btn.btn-secondary').click();
         });
@@ -36,12 +36,6 @@ describe('Test with Page Objects', () => {
         cy.wait(1000)
         cy.scrollTo(0,5000)
         cy.contains('Dừng xem lại').click();
-        let score;
-        if(score < 5){
-            cy.oncemoreplz()
-        }
-        else {
-           return;
-        }
+        cy.oncemoreplz();
     })
 })
