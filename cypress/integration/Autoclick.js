@@ -1,6 +1,5 @@
 /// <reference types="cypress" />
 describe('Test with Page Objects', () => {
-    let score = 0;
     beforeEach('login', () => {
         cy.clearCookies()
         cy.visit('/')
@@ -37,6 +36,7 @@ describe('Test with Page Objects', () => {
         cy.wait(1000)
         cy.scrollTo(0,5000)
         cy.contains('Dừng xem lại').click();
+        let score;
         if(score < 5){
             cy.oncemoreplz()
         }
