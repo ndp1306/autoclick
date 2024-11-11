@@ -14,7 +14,7 @@ describe('Test with Page Objects', () => {
         cy.wait(2000)
         cy.get('[class="card-deck dashboard-card-deck "]')
         //Auto click vào bài đầu tiên trong list Course review
-        .find('[class="card dashboard-card"]').first().click()
+        .find('[class="card-img dashboard-card-img"]').first().click()
         cy.contains('Câu hỏi ôn tập chương 2').click(); //Moi nguoi tu thay doi chuong nhe =))) auto cai nay met vcl
         cy.get('div.box.py-3.quizattempt').within(() => {
             cy.get('button.btn.btn-secondary').click();
