@@ -22,20 +22,25 @@ describe('Test with Page Objects', () => {
             // Check if the div contains exactly 4 radio buttons
             if ($div.find('input[type="radio"]').length === 4) {
               // Select a random radio button within the div
-              cy.wrap($div).find('input[type="radio"]').eq(Math.floor(Math.random() * 4)).click();
-            }})
+              cy.wrap($div).find('input[type="radio"]').eq(Math.floor(Math.random() * 4)).wait(1000).click();
+            }
+        })
         cy.contains('Hoàn thành bài thi...').click()
         cy.wait(1000)
         cy.contains('Nộp bài và kết thúc').click()
         cy.wait(1000)
         cy.get('div[role="dialog"]').find('.btn.btn-primary').click();
-        cy.get('td.cell > :nth-child(1)').then(($span) =>{
-            let score = $span.text();
-            cy.log(score);
-            })
+        var score
+        cy.get('td.cell > :nth-child(1)')
+        .invoke('text')
+        .then((text) => {
+            var score = Number(text.replace(',', '.'))
+            cy.log(score)
+            cy.log(score > 0)
+        })
         cy.wait(1000)
         cy.scrollTo(0,5000)
         cy.contains('Dừng xem lại').click();
-        cy.oncemoreplz();
+        cy.oncemoreplz()
     })
 })
